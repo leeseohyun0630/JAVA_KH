@@ -57,9 +57,44 @@ public class ProductDAO {
 	public boolean deleteProductByProdnum(int prodnum) {
 		return dbConnection.delete(""+prodnum);
 	}
-	public boolean updateProductByProdnum(int prodnum, int choice, String update) {
-		return dbConnection.update(prodnum+"", choice, update);
+	public boolean updateProduct(int prodnum, String col, String newData) {
+		return dbConnection.update(prodnum+"", col, newData);
 	}
+	
+	public ArrayList<ProductDTO> getAllProduct() {
+		ArrayList<String[]> list = dbConnection.select();
+		ArrayList<ProductDTO> result = new ArrayList<>();
+		if(list.size()>0) {
+			for(String[] line : list) {
+				ProductDTO product = new ProductDTO(
+						Integer.parseInt(line[0]),
+						line[1],
+						Integer.parseInt(line[2]),
+						Integer.parseInt(line[3]),
+						line[4],
+						Integer.parseInt(line[5]),
+						line[6]
+				);
+				result.add(product);
+			}
+		}
+		return result;
+	}
+	public ProductDTO getProductByProdnum(int prodnum) {
+		ArrayList<String[]> result = dbConnection.select(0, prodnum+"");
+		String[] line = result.get(0);
+		ProductDTO product = new ProductDTO(
+				Integer.parseInt(line[0]),
+				line[1],
+				Integer.parseInt(line[2]),
+				Integer.parseInt(line[3]),
+				line[4],
+				Integer.parseInt(line[5]),
+				line[6]
+		);
+		return product;
+	}
+
 }
 
 

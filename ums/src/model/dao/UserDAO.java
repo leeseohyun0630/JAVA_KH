@@ -30,6 +30,14 @@ public class UserDAO {
 				user.getUserage(),user.getUserphone(),user.getUseraddr());
 		return dbConnection.insert(data);
 	}
+
+	public boolean upDataUser(String loginUser, String col, String newData) {
+		return dbConnection.update(loginUser, col, newData);
+	}
+
+	public void deleteUser(String loginUser) {
+		dbConnection.delete(loginUser);
+	}
 }
 
 
