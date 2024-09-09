@@ -17,8 +17,8 @@ public class ModifyProductView {
 		else {
 			System.out.println("======== 내가 올린 상품 목록 ========");
 			for(ProductDTO product : list) {
-				System.out.printf("%d. %s : %d원 (재고 : %d개)\n", product.getProdnum(), product.getProdname(),
-						product.getProdprice(), product.getProdamount());
+				System.out.printf("%d. %s : %d원 (재고 : %d개)\n", product.getProdnum(), 
+						product.getProdname(),product.getProdprice(), product.getProdamount());
 			}
 			System.out.println("================================");
 		}
